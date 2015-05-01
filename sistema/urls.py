@@ -16,7 +16,14 @@ urlpatterns = patterns('',
     url(r'^cliente/add/$', ClienteCreateView.as_view(), name='cliente-add'),
     url(r'^cliente/editar/(?P<pk>\d+)/$', ClienteUpdateView.as_view(), name='cliente-edit'),
     url(r'^cliente/deletar/(?P<pk>\d+)/$', ClienteDeleteView.as_view(), name='cliente-delete'),
-    # url(r'^blog/', include('blog.urls')),
+    
+
+    url(r'^venda/$', VendaListView.as_view(), name='venda-list'),
+    url(r'^venda/(?P<pk>\d+)/$', VendaDetailView.as_view(), name='venda-detail'),
+    url(r'^venda/add/$', VendaCreateView.as_view(), name='venda-add'),
+    url(r'^venda/editar/(?P<pk>\d+)/$', VendaUpdateView.as_view(), name='venda-edit'),
+    url(r'^venda/deletar/(?P<pk>\d+)/$', VendaDeleteView.as_view(), name='venda-delete'),
+
 
     url(r'^admin/', include(admin.site.urls)),
 )
