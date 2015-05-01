@@ -12,6 +12,9 @@ class Moto(models.Model):
     def __unicode__(self):
         return self.modelo
 
+    class Meta:
+        ordering = ['-pk']
+
 
 class Cliente(models.Model):
 

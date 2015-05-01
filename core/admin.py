@@ -1,5 +1,8 @@
 from django.contrib import admin
-from core.models import Moto, Cliente, Funcionario, Venda, Peca, Abastecedor
+from core.models import Moto, Cliente, Funcionario, Venda, Peca, Abastecedor, Item
+
+class ItemInline(admin.TabularInline):
+	model = Item
 
 class MotoAdmin(admin.ModelAdmin):
     list_display = ('marca', 'modelo', 'ano')
@@ -15,7 +18,8 @@ class FuncionarioAdmin(admin.ModelAdmin):
 	list_display = ('nome', 'cpf')
 
 class VendaAdmin(admin.ModelAdmin):
-	list_display = ['cliente','funcionario']
+	list_display = ['cliente','funcionario', 'valor_total', 'data']
+	inlines = [ItemInline]
 
 class PecaAdmin(admin.ModelAdmin):
 	list_display = ('nome','marca','preco','disponibilidade','quantidade')

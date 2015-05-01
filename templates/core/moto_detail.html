@@ -1,0 +1,22 @@
+{% extends "components/base.html" %}
+
+{% load helper %}
+
+{% block conteudo %}
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Add Moto</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+<div class="row">
+  	<dl>
+  		<dt>Marca</dt><dd>{{ object.marca }}</dd>
+		<dd>{{ object.modelo }}</dd>
+		<dd>{{ object.placa }}</dd>
+
+  	</dl>  
+</div>
+
+{% endblock %}
