@@ -10,6 +10,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from dj_database_url import parse as parse_db_url
+from decouple import config
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -59,14 +62,15 @@ WSGI_APPLICATION = 'sistema.wsgi.application'
 
 DATABASES = {
     'default': {
+    'default': parse_db_url(config('DATABASE_URL'))
         # 'ENGINE': 'django.db.backends.mysql',
         # 'NAME': 'sistema',
         # 'USER': 'root',
         # 'PASSWORD': '1234',
         # 'HOST': '127.0.0.1',
         # 'PORT': 3306,
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR,'sistema.sqlite3'),
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR,'sistema.sqlite3'),
     }
 }
 
