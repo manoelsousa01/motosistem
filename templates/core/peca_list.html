@@ -1,0 +1,64 @@
+{% extends "components/base.html" %}
+
+{% block conteudo %}
+	<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Peças</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="dataTable_wrapper">
+				<table class="table table-striped table-bordered table-hover">
+					<tr>
+						<th>Nome</th>
+						<th>CPF</th>
+						<th>Moto</th>
+						<th>Telefone</th>
+						<th>Acoes</th>
+					</tr>
+
+					{% for peca in object_list %}
+					<tr>
+						<td>{{ peca.nome }}</td>
+						<td>{{ peca.cpf }}</td>
+						<td>{{ peca.moto }}</td>
+						<td>{{ peca.telefone }}</td>
+						<td>
+							<a class="btn btn-info" href='{% url "peca-detail" peca.pk %}'>Visualizar</a>
+							<a class="btn btn-primary" href='{% url "peca-edit" peca.pk %}'>Editar</a>
+							<a class="btn btn-danger" href='{% url "peca-delete" peca.pk %}'>Deletar</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+
+				{% if is_paginated %}
+				<ul class="pagination">
+					{% if page_obj.has_previous %}
+						<li class="paginate_button previous" id="dataTables-example_previous">
+							<a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+						</li>
+					{% endif %}
+
+					{% for page in page_obj.paginator.page_range %}
+						{% ifequal page page_obj.number %}
+							<li class="paginate_button active"><a href="#">{{ page }}</a></li>
+						{% else %}
+							<li class="paginate_button"><a href="?page={{ page }}">{{ page }}</a></li>
+						{% endifequal %}
+					{% endfor %}
+
+					{% if page_obj.has_next %}
+					<li class="paginate_button next"><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+					{% endif %}
+				</ul>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	
+	<a class="btn btn-success" href='{% url "peca-add" %}'>Add</a>
+{% endblock %}

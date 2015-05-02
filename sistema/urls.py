@@ -24,6 +24,13 @@ urlpatterns = patterns('',
     url(r'^venda/editar/(?P<pk>\d+)/$', VendaUpdateView.as_view(), name='venda-edit'),
     url(r'^venda/deletar/(?P<pk>\d+)/$', VendaDeleteView.as_view(), name='venda-delete'),
 
+    url(r'^peca/$', PecaListView.as_view(), name='peca-list'),
+    url(r'^peca/(?P<pk>\d+)/$', PecaDetailView.as_view(), name='peca-detail'),
+    url(r'^peca/add/$', PecaCreateView.as_view(), name='peca-add'),
+    url(r'^peca/editar/(?P<pk>\d+)/$', PecaUpdateView.as_view(), name='peca-edit'),
+    url(r'^peca/deletar/(?P<pk>\d+)/$', PecaDeleteView.as_view(), name='peca-delete'),
+
+
 
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -51,18 +51,20 @@ class Venda(models.Model):
     cliente = models.ForeignKey(Cliente)
     funcionario = models.ForeignKey(Funcionario)
     data = models.DateTimeField(auto_now_add=True)
-    valor_total = models.FloatField()
+    valor_total = models.FloatField(blank=True, null=True)
 
     def __unicode__(self):
         return self.cliente.nome
 
+    class Meta:
+        ordering = ['-pk']
+        verbose_name='Vendas'
 
 class Item(models.Model):
     venda = models.ForeignKey(Venda)
     peca = models.ForeignKey(Peca)
     quantidade = models.IntegerField()
     valor_unitario = models.FloatField()
-    valor_total = models.FloatField()
 
     def __unicode__(self):
         return self.venda.cliente.nome

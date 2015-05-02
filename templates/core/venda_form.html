@@ -1,0 +1,35 @@
+{% extends "components/base.html" %}
+
+{% load helper %}
+
+{% block conteudo %}
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Adicionar Venda</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+	<form method="post" role="form">
+		{% csrf_token %}
+		{% for campo in form %}
+			<div class="form-group">
+	            <label>{{ campo.label }}</label>
+	            {{ campo|addclass:"form-control" }}
+	        </div>
+		{% endfor %}
+
+		{% for inline in inlines %}
+		{{ inline.management_form }}
+
+        {% for i in inline %}
+        <ul class="list-inline">
+        {{ i.as_ul }}
+        </ul>
+        {% endfor %}
+
+		{% endfor %}
+
+		<input class="btn btn-success" type="submit">
+	</form>
+{% endblock %}
